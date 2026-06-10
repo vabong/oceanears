@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>OCEAN EARS — Sound Swimming with Whales</title>
+<meta name="description" content="OCEAN EARS is an immersive listening project that renders the underwater acoustic world of whales in hyperreal spatial detail — making the ocean's hidden soundscape audible, tangible, and worth protecting." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Descent palette — sunlit surface down to abyss */
+    --surface:#13608c;
+    --upper:  #0d456a;
+    --mid:    #082f4c;
+    --deep:   #051e33;
+    --abyss:  #02101d;
+    /* Bioluminescent sound */
+    --glow:#54e8d4;
+    --glow-2:#6ff0ff;
+    --glow-soft:rgba(84,232,212,.16);
+    /* Light */
+    --foam:#eaf7f6;
+    --foam-dim:rgba(234,247,246,.66);
+    --foam-faint:rgba(234,247,246,.40);
+    --line:rgba(120,210,220,.16);
+    --display:"Fraunces",Georgia,serif;
+    --body:"Inter",system-ui,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,monospace;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--body);
+    color:var(--foam);
+    /* the descent: one continuous gradient that darkens as you scroll */
+    background:linear-gradient(180deg,
+      var(--surface) 0%,
+      var(--upper) 18%,
+      var(--mid) 40%,
+      var(--deep) 66%,
+      var(--abyss) 100%);
+    background-attachment:fixed;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  /* drifting marine snow + ambient field, fixed behind everything */
+  #seafield{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+
+  .wrap{position:relative;z-index:2;max-width:1140px;margin:0 auto;padding:0 28px}
+
+  /* ---------- top bar ---------- */
+  .topbar{
+    position:relative;z-index:3;
+    display:flex;justify-content:space-between;align-items:center;
+    max-width:1140px;margin:0 auto;padding:26px 28px 0;
+    font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--foam-dim);
+  }
+  .topbar .mark{font-family:var(--mono);color:var(--foam);letter-spacing:.32em}
+  .topbar .url{font-family:var(--mono)}
+  .topbar .url a{color:var(--foam-dim);text-decoration:none;transition:color .3s}
+  .topbar .url a:hover{color:var(--glow)}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    min-height:92vh;
+    display:flex;flex-direction:column;justify-content:center;
+    padding:5vh 0 9vh;
+  }
+  /* caustic sunlight near the surface */
+  .caustics{
+    position:absolute;top:-10%;left:50%;transform:translateX(-50%);
+    width:140%;height:60%;z-index:1;pointer-events:none;
+    background:
+      radial-gradient(60% 80% at 30% 0%, rgba(150,235,235,.20), transparent 60%),
+      radial-gradient(50% 70% at 72% 0%, rgba(120,220,240,.16), transparent 55%);
+    mix-blend-mode:screen;
+    animation:shimmer 11s ease-in-out infinite alternate;
+  }
+  @keyframes shimmer{from{opacity:.55;transform:translateX(-52%) scale(1)}to{opacity:1;transform:translateX(-48%) scale(1.06)}}
+
+  .wavewrap{
+    position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);
+    z-index:1;pointer-events:none;opacity:.9;
+  }
+  .wavewrap svg{width:100%;height:340px;display:block}
+  .sng{fill:none;stroke-linecap:round}
+
+  .hero-inner{position:relative;z-index:2}
+  .eyebrow{
+    font-family:var(--mono);font-size:.78rem;letter-spacing:.42em;text-transform:uppercase;
+    color:var(--glow);margin-bottom:1.6rem;
+    display:flex;align-items:center;gap:.9rem;
+  }
+  .eyebrow::before{content:"";width:34px;height:1px;background:var(--glow);opacity:.7}
+
+  h1.title{
+    font-family:var(--display);
+    font-weight:400;
+    font-size:clamp(3.6rem,12vw,9rem);
+    line-height:.92;
+    letter-spacing:-.01em;
+    text-shadow:0 0 60px rgba(84,232,212,.18);
+  }
+  h1.title .a{display:block}
+  .subtitle{
+    font-family:var(--display);font-style:italic;font-weight:300;
+    font-size:clamp(1.4rem,3.6vw,2.5rem);
+    color:var(--glow-2);
+    margin-top:.5rem;letter-spacing:.005em;
+  }
+  .lede{
+    max-width:33ch;margin-top:2rem;
+    font-size:clamp(1.05rem,1.6vw,1.28rem);
+    color:var(--foam-dim);font-weight:300;
+  }
+  .scrollcue{
+    margin-top:3.4rem;display:flex;align-items:center;gap:.8rem;
+    font-family:var(--mono);font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;
+    color:var(--foam-faint);
+  }
+  .scrollcue .dot{
+    width:7px;height:7px;border-radius:50%;background:var(--glow);
+    box-shadow:0 0 12px var(--glow);
+    animation:sink 2.4s ease-in-out infinite;
+  }
+  @keyframes sink{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(7px);opacity:1}}
+
+  /* ---------- generic section ---------- */
+  section{position:relative;z-index:2}
+  .block{padding:7rem 0}
+  .label{
+    font-family:var(--mono);font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;
+    color:var(--glow);margin-bottom:1.6rem;
+  }
+  h2{
+    font-family:var(--display);font-weight:400;
+    font-size:clamp(2rem,5vw,3.4rem);line-height:1.04;
+    letter-spacing:-.01em;max-width:18ch;margin-bottom:2.2rem;
+  }
+  .prose{max-width:60ch}
+  .prose p{font-weight:300;color:var(--foam-dim);font-size:1.12rem;margin-bottom:1.3rem}
+  .prose p strong{color:var(--foam);font-weight:500}
+  .prose em{font-style:italic;color:var(--glow-2)}
+
+  /* ---------- data readouts ---------- */
+  .readouts{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+    background:var(--line);border:1px solid var(--line);
+    border-radius:3px;overflow:hidden;margin-top:1rem;
+  }
+  .rd{
+    background:linear-gradient(180deg,rgba(8,40,62,.55),rgba(5,26,44,.55));
+    padding:2.1rem 1.4rem;backdrop-filter:blur(2px);
+  }
+  .rd .v{font-family:var(--display);font-weight:400;font-size:clamp(1.7rem,3.4vw,2.5rem);color:var(--foam);line-height:1}
+  .rd .v small{font-size:.5em;color:var(--glow);font-family:var(--mono);font-weight:400;letter-spacing:.02em}
+  .rd .k{font-family:var(--mono);font-size:.72rem;line-height:1.5;letter-spacing:.04em;color:var(--foam-faint);margin-top:.9rem;text-transform:uppercase}
+
+  /* ---------- components ---------- */
+  .components{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:1rem}
+  .card{
+    border:1px solid var(--line);border-radius:4px;padding:2.2rem 1.9rem;
+    background:linear-gradient(180deg,rgba(10,46,70,.34),rgba(4,20,34,.30));
+    backdrop-filter:blur(3px);
+    transition:border-color .4s,transform .4s;
+  }
+  .card:hover{border-color:rgba(84,232,212,.5);transform:translateY(-4px)}
+  .card .n{font-family:var(--mono);font-size:.72rem;letter-spacing:.3em;color:var(--glow);text-transform:uppercase}
+  .card h3{font-family:var(--display);font-weight:400;font-size:1.6rem;margin:1rem 0 .8rem;line-height:1.1}
+  .card p{font-weight:300;color:var(--foam-dim);font-size:1rem}
+  .card .soon{
+    display:inline-block;margin-top:1.1rem;font-family:var(--mono);font-size:.66rem;
+    letter-spacing:.18em;text-transform:uppercase;color:var(--glow-2);
+    border:1px solid rgba(111,240,255,.32);border-radius:100px;padding:.28rem .7rem;
+  }
+
+  /* ---------- listening map teaser ---------- */
+  .map-block{padding:7rem 0 8rem}
+  .map-card{
+    position:relative;border:1px solid var(--line);border-radius:6px;overflow:hidden;
+    background:radial-gradient(120% 140% at 50% 0%,rgba(8,42,66,.6),rgba(2,14,26,.85));
+    margin-top:2rem;
+  }
+  .map-card .grid-svg{display:block;width:100%;height:auto}
+  .map-overlay{
+    position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;
+    padding:2.6rem;gap:.4rem;
+    background:linear-gradient(180deg,transparent 40%,rgba(2,14,26,.6));
+  }
+  .map-overlay h3{font-family:var(--display);font-weight:400;font-size:clamp(1.6rem,3.5vw,2.4rem)}
+  .map-overlay p{max-width:48ch;color:var(--foam-dim);font-weight:300}
+
+  /* ---------- footer ---------- */
+  footer{
+    position:relative;z-index:2;
+    border-top:1px solid var(--line);
+    padding:2.4rem 28px 2.6rem;
+    max-width:1140px;margin:0 auto;
+    display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:1.2rem;
+  }
+  .copyright{font-size:.74rem;color:var(--foam-faint);letter-spacing:.01em;grid-column:1}
+  .funding{
+    grid-column:2;text-align:center;max-width:62ch;
+    font-size:.72rem;line-height:1.55;color:var(--foam-faint);
+  }
+  .footflag{grid-column:3;justify-self:end;display:flex;align-items:center;gap:.6rem;color:var(--foam-faint);font-family:var(--mono);font-size:.66rem;letter-spacing:.12em}
+  .eu{width:30px;height:20px;border-radius:2px;flex:none;
+    background:#0a2a6c;position:relative;overflow:hidden}
+  .eu::after{content:"★★★★★★";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    color:#ffd617;font-size:6px;letter-spacing:1px;line-height:8px;width:18px;height:18px;margin:auto;
+    transform:scale(1.1)}
+
+  /* ---------- reveal on scroll ---------- */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity 1s ease,transform 1s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- responsive ---------- */
+  @media(max-width:860px){
+    .readouts{grid-template-columns:repeat(2,1fr)}
+    .components{grid-template-columns:1fr}
+    .block{padding:5rem 0}
+    footer{grid-template-columns:1fr;text-align:center;gap:1.4rem}
+    .copyright,.funding,.footflag{grid-column:1;justify-self:center}
+    .map-overlay{padding:1.6rem}
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    .reveal{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<canvas id="seafield"></canvas>
+
+<div class="topbar">
+  <span class="mark">OCEAN&nbsp;EARS</span>
+  <span class="url"><a href="https://ocean-ears.org">ocean-ears.org</a></span>
+</div>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="caustics"></div>
+  <div class="wavewrap" id="wavewrap" aria-hidden="true">
+    <svg viewBox="0 0 1200 340" preserveAspectRatio="none">
+      <path class="sng" id="w1" stroke="rgba(84,232,212,.85)" stroke-width="2"
+            style="filter:drop-shadow(0 0 8px rgba(84,232,212,.7))"/>
+      <path class="sng" id="w2" stroke="rgba(111,240,255,.5)"  stroke-width="1.4"/>
+      <path class="sng" id="w3" stroke="rgba(150,235,235,.28)" stroke-width="1"/>
+    </svg>
+  </div>
+
+  <div class="wrap hero-inner">
+    <div class="eyebrow">A new way of listening</div>
+    <h1 class="title"><span class="a">Ocean</span><span class="a">Ears</span></h1>
+    <div class="subtitle">Sound Swimming with Whales</div>
+    <p class="lede">An immersive dive into the acoustic world of whales — making the ocean's hidden soundscape audible, tangible, and worth protecting.</p>
+    <div class="scrollcue"><span class="dot"></span> Descend to listen</div>
+  </div>
+</header>
+
+<!-- ============ INTRO ============ -->
+<section class="block">
+  <div class="wrap reveal">
+    <div class="label">The project</div>
+    <h2>Listening beyond the limits of human hearing.</h2>
+    <div class="prose">
+      <p>OCEAN EARS places whale song at the centre of an underwater orchestra — the <em>geophony</em> of earthquakes, storms and waves, the <em>biophony</em> of marine life, and the <em>anthropophony</em> of human-made noise. Rendered in hyperreal, spatial detail, these sounds let people sense the reality whales actually live in.</p>
+      <p>Drawing on more than two decades of continuous hydrophone recordings and the work of marine bioacousticians, the project transforms specialist scientific data into a <strong>public sonic library</strong> — one you can move through, not just look at.</p>
+      <p>At heart, it is an argument for listening. Rising levels of human-made noise now threaten the acoustic conditions marine life depends on. To protect that world, we first have to be able to hear it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DATA READOUTS ============ -->
+<section class="block" style="padding-top:0">
+  <div class="wrap reveal">
+    <div class="label">From the hydrophones</div>
+    <div class="readouts">
+      <div class="rd"><div class="v">189&nbsp;<small>dB</small></div><div class="k">Underwater power of<br>a blue whale</div></div>
+      <div class="rd"><div class="v">1000<small>km+</small></div><div class="k">How far sound carries<br>in the SOFAR channel</div></div>
+      <div class="rd"><div class="v">13<small>Hz</small>–20<small>kHz</small></div><div class="k">Frequency range of<br>baleen whale song</div></div>
+      <div class="rd"><div class="v">25&nbsp;<small>yrs</small></div><div class="k">Continuous ocean<br>recordings in the archive</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMPONENTS ============ -->
+<section class="block">
+  <div class="wrap reveal">
+    <div class="label">Three ways in</div>
+    <h2>An archive, an application, and installations you feel.</h2>
+    <div class="components">
+      <div class="card">
+        <div class="n">01 / Archive</div>
+        <h3>The Archive</h3>
+        <p>An intelligent, geo-tagged library of marine sound — organised by species, place, time and call type, and released as open data for science, art and conservation.</p>
+      </div>
+      <div class="card">
+        <div class="n">02 / Application</div>
+        <h3>The Application</h3>
+        <p>A browser-based listening map. Swim through 3D soundscapes, turn your head toward a singing whale, move closer, and hear the ocean change across seasons and years.</p>
+        <span class="soon">Arriving 2027</span>
+      </div>
+      <div class="card">
+        <div class="n">03 / Installations</div>
+        <h3>The Installations</h3>
+        <p>Physical spaces where whale song is felt as well as heard — infrasound below the threshold of hearing, delivered through the body as vibration.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LISTENING MAP TEASER ============ -->
+<section class="map-block">
+  <div class="wrap reveal">
+    <div class="label">In development</div>
+    <h2>The Listening Map.</h2>
+    <div class="map-card">
+      <svg class="grid-svg" viewBox="0 0 1140 440" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <defs>
+          <radialGradient id="ping" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#6ff0ff" stop-opacity=".9"/>
+            <stop offset="100%" stop-color="#6ff0ff" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <!-- faint lat/long grid -->
+        <g stroke="rgba(120,210,220,.10)" stroke-width="1">
+          <line x1="0" y1="73" x2="1140" y2="73"/><line x1="0" y1="146" x2="1140" y2="146"/>
+          <line x1="0" y1="220" x2="1140" y2="220"/><line x1="0" y1="293" x2="1140" y2="293"/>
+          <line x1="0" y1="366" x2="1140" y2="366"/>
+          <line x1="142" y1="0" x2="142" y2="440"/><line x1="285" y1="0" x2="285" y2="440"/>
+          <line x1="427" y1="0" x2="427" y2="440"/><line x1="570" y1="0" x2="570" y2="440"/>
+          <line x1="712" y1="0" x2="712" y2="440"/><line x1="855" y1="0" x2="855" y2="440"/>
+          <line x1="997" y1="0" x2="997" y2="440"/>
+        </g>
+        <!-- listening stations -->
+        <g id="stations"></g>
+      </svg>
+      <div class="map-overlay">
+        <h3>Dive in and listen.</h3>
+        <p>An interactive XR map of the ocean's sound is being built now. You'll swim with whales across the Indian Ocean, the Southern Ocean and beyond — listening in space, across seasons and across years.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="copyright">© 2026 Cobi van Tonder — Sound Swimming with Whales</div>
+  <div class="funding">This project has received funding from the European Commission Horizon 2020 research and innovation programme under the Marie Sk&#322;odowska-Curie grant agreement 101283235.</div>
+  <div class="footflag"><span class="eu"></span> EU&nbsp;FUNDED</div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- hero whale-song waves ---- */
+  var W=1200, paths=[
+    {el:document.getElementById('w1'), amp:34, base:170, layers:[[0.012,1],[0.031,.5],[0.07,.22]], sp:0.6},
+    {el:document.getElementById('w2'), amp:52, base:170, layers:[[0.009,1],[0.024,.55],[0.05,.3]], sp:0.42},
+    {el:document.getElementById('w3'), amp:78, base:170, layers:[[0.006,1],[0.017,.6]], sp:0.3}
+  ];
+  function build(p,t){
+    var d='M 0 '+ (p.base);
+    for(var x=0;x<=W;x+=10){
+      var y=p.base;
+      for(var i=0;i<p.layers.length;i++){
+        y += Math.sin(x*p.layers[i][0] + t*p.sp + i*1.7)*p.amp*p.layers[i][1];
+      }
+      d+=' L '+x+' '+y.toFixed(1);
+    }
+    return d;
+  }
+  function frame(now){
+    var t=now*0.001;
+    for(var i=0;i<paths.length;i++) paths[i].el.setAttribute('d', build(paths[i], t));
+    if(!reduce) requestAnimationFrame(frame);
+  }
+  if(reduce){ for(var i=0;i<paths.length;i++) paths[i].el.setAttribute('d', build(paths[i],0)); }
+  else requestAnimationFrame(frame);
+
+  /* ---- listening stations on the map ---- */
+  var stations=[[180,150,'Antarctic'],[300,300,'S. Atlantic'],[520,200,'Indian Ocean'],
+                [700,140,'N. Pacific'],[880,310,'Baja, California'],[1000,210,'East Africa']];
+  var g=document.getElementById('stations'), svgns='http://www.w3.org/2000/svg';
+  stations.forEach(function(s,idx){
+    var ping=document.createElementNS(svgns,'circle');
+    ping.setAttribute('cx',s[0]);ping.setAttribute('cy',s[1]);ping.setAttribute('r','5');
+    ping.setAttribute('fill','url(#ping)');
+    var core=document.createElementNS(svgns,'circle');
+    core.setAttribute('cx',s[0]);core.setAttribute('cy',s[1]);core.setAttribute('r','2.4');
+    core.setAttribute('fill','#6ff0ff');
+    if(!reduce){
+      var an=document.createElementNS(svgns,'animate');
+      an.setAttribute('attributeName','r');an.setAttribute('values','3;26;3');
+      an.setAttribute('dur',(3.2+idx*0.4)+'s');an.setAttribute('repeatCount','indefinite');
+      var ao=document.createElementNS(svgns,'animate');
+      ao.setAttribute('attributeName','opacity');ao.setAttribute('values','.8;0;.8');
+      ao.setAttribute('dur',(3.2+idx*0.4)+'s');ao.setAttribute('repeatCount','indefinite');
+      ping.appendChild(an);ping.appendChild(ao);
+    }
+    var lbl=document.createElementNS(svgns,'text');
+    lbl.setAttribute('x',s[0]+10);lbl.setAttribute('y',s[1]+4);
+    lbl.setAttribute('fill','rgba(234,247,246,.55)');
+    lbl.setAttribute('font-family',"'IBM Plex Mono',monospace");
+    lbl.setAttribute('font-size','11');lbl.setAttribute('letter-spacing','1');
+    lbl.textContent=s[2];
+    g.appendChild(ping);g.appendChild(core);g.appendChild(lbl);
+  });
+
+  /* ---- marine snow ---- */
+  var c=document.getElementById('seafield'), x=c.getContext('2d'), parts=[], DPR=Math.min(window.devicePixelRatio||1,2);
+  function size(){c.width=innerWidth*DPR;c.height=innerHeight*DPR;x.setTransform(DPR,0,0,DPR,0,0);}
+  size();addEventListener('resize',size);
+  for(var i=0;i<70;i++){parts.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,
+    r:Math.random()*1.6+.3,sp:Math.random()*.22+.05,dr:Math.random()*.3-.15,o:Math.random()*.4+.1});}
+  function snow(){
+    x.clearRect(0,0,innerWidth,innerHeight);
+    for(var i=0;i<parts.length;i++){var p=parts[i];
+      x.beginPath();x.arc(p.x,p.y,p.r,0,6.28);
+      x.fillStyle='rgba(190,235,235,'+p.o+')';x.fill();
+      p.y+=p.sp;p.x+=p.dr;
+      if(p.y>innerHeight+5){p.y=-5;p.x=Math.random()*innerWidth;}
+    }
+    if(!reduce) requestAnimationFrame(snow);
+  }
+  if(reduce) snow(); else requestAnimationFrame(snow);
+
+  /* ---- reveal on scroll ---- */
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.18});
+    document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+  } else { document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');}); }
+})();
+</script>
+</body>
+</html>
