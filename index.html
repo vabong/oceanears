@@ -25,6 +25,7 @@
     --foam-dim:rgba(234,247,246,.66);
     --foam-faint:rgba(234,247,246,.40);
     --line:rgba(120,210,220,.16);
+    --line-strong:rgba(120,210,220,.32);
     --display:"Fraunces",Georgia,serif;
     --body:"Inter",system-ui,sans-serif;
     --mono:"IBM Plex Mono",ui-monospace,monospace;
@@ -35,7 +36,6 @@
   body{
     font-family:var(--body);
     color:var(--foam);
-    /* the descent: one continuous gradient that darkens as you scroll */
     background:linear-gradient(180deg,
       var(--surface) 0%,
       var(--upper) 18%,
@@ -48,7 +48,6 @@
     overflow-x:hidden;
   }
 
-  /* drifting marine snow + ambient field, fixed behind everything */
   #seafield{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
 
   .wrap{position:relative;z-index:2;max-width:1140px;margin:0 auto;padding:0 28px}
@@ -62,9 +61,10 @@
     color:var(--foam-dim);
   }
   .topbar .mark{font-family:var(--mono);color:var(--foam);letter-spacing:.32em}
-  .topbar .url{font-family:var(--mono)}
-  .topbar .url a{color:var(--foam-dim);text-decoration:none;transition:color .3s}
-  .topbar .url a:hover{color:var(--glow)}
+  .topbar nav{display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:flex-end}
+  .topbar nav a{font-family:var(--mono);color:var(--foam-dim);text-decoration:none;transition:color .3s;white-space:nowrap}
+  .topbar nav a:hover{color:var(--glow)}
+  .navtoggle{display:none}
 
   /* ---------- hero ---------- */
   .hero{
@@ -73,7 +73,6 @@
     display:flex;flex-direction:column;justify-content:center;
     padding:5vh 0 9vh;
   }
-  /* caustic sunlight near the surface */
   .caustics{
     position:absolute;top:-10%;left:50%;transform:translateX(-50%);
     width:140%;height:60%;z-index:1;pointer-events:none;
@@ -134,7 +133,7 @@
 
   /* ---------- generic section ---------- */
   section{position:relative;z-index:2}
-  .block{padding:7rem 0}
+  .block{padding:7rem 0;scroll-margin-top:80px}
   .label{
     font-family:var(--mono);font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;
     color:var(--glow);margin-bottom:1.6rem;
@@ -163,26 +162,62 @@
   .rd .v small{font-size:.5em;color:var(--glow);font-family:var(--mono);font-weight:400;letter-spacing:.02em}
   .rd .k{font-family:var(--mono);font-size:.72rem;line-height:1.5;letter-spacing:.04em;color:var(--foam-faint);margin-top:.9rem;text-transform:uppercase}
 
-  /* ---------- components ---------- */
-  .components{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:1rem}
-  .card{
-    border:1px solid var(--line);border-radius:4px;padding:2.2rem 1.9rem;
-    background:linear-gradient(180deg,rgba(10,46,70,.34),rgba(4,20,34,.30));
-    backdrop-filter:blur(3px);
-    transition:border-color .4s,transform .4s;
-  }
-  .card:hover{border-color:rgba(84,232,212,.5);transform:translateY(-4px)}
-  .card .n{font-family:var(--mono);font-size:.72rem;letter-spacing:.3em;color:var(--glow);text-transform:uppercase}
-  .card h3{font-family:var(--display);font-weight:400;font-size:1.6rem;margin:1rem 0 .8rem;line-height:1.1}
-  .card p{font-weight:300;color:var(--foam-dim);font-size:1rem}
-  .card .soon{
-    display:inline-block;margin-top:1.1rem;font-family:var(--mono);font-size:.66rem;
+  /* ---------- pillar sections ---------- */
+  .pillar{padding:6rem 0;border-top:1px solid var(--line);scroll-margin-top:80px}
+  .pillar .n{font-family:var(--mono);font-size:.72rem;letter-spacing:.3em;color:var(--glow);text-transform:uppercase;margin-bottom:1.1rem}
+  .pillar h2{margin-bottom:1.6rem}
+  .soon{
+    display:inline-block;font-family:var(--mono);font-size:.66rem;
     letter-spacing:.18em;text-transform:uppercase;color:var(--glow-2);
-    border:1px solid rgba(111,240,255,.32);border-radius:100px;padding:.28rem .7rem;
+    border:1px solid rgba(111,240,255,.32);border-radius:100px;padding:.32rem .8rem;
+    margin-bottom:1.6rem;
   }
 
+  /* contributors / credit block under the archive */
+  .credit{margin-top:2.6rem;padding-top:2rem;border-top:1px solid var(--line)}
+  .credit .h{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--foam-faint);margin-bottom:1.2rem}
+  .chips{display:flex;flex-wrap:wrap;gap:.7rem}
+  .chip{font-family:var(--mono);font-size:.78rem;color:var(--foam-dim);
+    border:1px solid var(--line);border-radius:100px;padding:.5rem 1.1rem;background:rgba(8,40,62,.3)}
+
+  /* CTA button */
+  .btn{display:inline-block;margin-top:2rem;font-family:var(--mono);font-size:.78rem;letter-spacing:.12em;
+    text-transform:uppercase;text-decoration:none;padding:.95rem 1.6rem;border-radius:3px;transition:all .3s;
+    background:var(--glow);color:#042;font-weight:500}
+  .btn:hover{background:var(--glow-2);box-shadow:0 0 24px rgba(84,232,212,.4)}
+
+  /* collapsible "how data will be used" */
+  .accordion{margin-top:2.4rem;border:1px solid var(--line);border-radius:4px;overflow:hidden;
+    background:linear-gradient(180deg,rgba(8,40,62,.4),rgba(5,26,44,.4))}
+  .accordion summary{
+    list-style:none;cursor:pointer;padding:1.4rem 1.6rem;
+    display:flex;justify-content:space-between;align-items:center;gap:1rem;
+    font-family:var(--mono);font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;color:var(--foam);
+  }
+  .accordion summary::-webkit-details-marker{display:none}
+  .accordion summary .plus{color:var(--glow);font-size:1.2rem;transition:transform .3s}
+  .accordion[open] summary .plus{transform:rotate(45deg)}
+  .accordion .body{padding:0 1.6rem 1.7rem}
+  .accordion .body p{font-weight:300;color:var(--foam-dim);font-size:1.02rem;margin-bottom:1rem;max-width:60ch}
+  .accordion .body p:last-child{margin-bottom:0}
+
+  /* ---------- research team ---------- */
+  .team{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:1rem}
+  .person{border:1px solid var(--line);border-radius:4px;padding:1.9rem 1.6rem;
+    background:linear-gradient(180deg,rgba(10,46,70,.32),rgba(4,20,34,.3));transition:border-color .4s}
+  .person:hover{border-color:var(--line-strong)}
+  .person .role{font-family:var(--mono);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--glow)}
+  .person h3{font-family:var(--display);font-weight:400;font-size:1.3rem;margin:.7rem 0 .5rem}
+  .person h3 a{color:var(--foam);text-decoration:none;border-bottom:1px solid transparent;transition:color .3s,border-color .3s}
+  .person h3 a:hover{color:var(--glow);border-bottom-color:var(--glow)}
+  .person p{font-weight:300;color:var(--foam-dim);font-size:.95rem}
+  .inst{margin-top:2.4rem;padding-top:1.8rem;border-top:1px solid var(--line);font-size:1.02rem;color:var(--foam-dim);font-weight:300;max-width:62ch}
+  .inst strong{color:var(--foam);font-weight:500}
+  .inst a{color:var(--glow);text-decoration:none;border-bottom:1px solid rgba(84,232,212,.35);transition:border-color .3s}
+  .inst a:hover{border-bottom-color:var(--glow)}
+
   /* ---------- listening map teaser ---------- */
-  .map-block{padding:7rem 0 8rem}
+  .map-block{padding:7rem 0 8rem;border-top:1px solid var(--line)}
   .map-card{
     position:relative;border:1px solid var(--line);border-radius:6px;overflow:hidden;
     background:radial-gradient(120% 140% at 50% 0%,rgba(8,42,66,.6),rgba(2,14,26,.85));
@@ -213,7 +248,7 @@
   .footflag{grid-column:3;justify-self:end;display:flex;align-items:center;gap:.6rem;color:var(--foam-faint);font-family:var(--mono);font-size:.66rem;letter-spacing:.12em}
   .eu{width:30px;height:20px;border-radius:2px;flex:none;
     background:#0a2a6c;position:relative;overflow:hidden}
-  .eu::after{content:"★★★★★★";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  .eu::after{content:"\2605\2605\2605\2605\2605\2605";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
     color:#ffd617;font-size:6px;letter-spacing:1px;line-height:8px;width:18px;height:18px;margin:auto;
     transform:scale(1.1)}
 
@@ -224,11 +259,13 @@
   /* ---------- responsive ---------- */
   @media(max-width:860px){
     .readouts{grid-template-columns:repeat(2,1fr)}
-    .components{grid-template-columns:1fr}
+    .team{grid-template-columns:1fr}
     .block{padding:5rem 0}
     footer{grid-template-columns:1fr;text-align:center;gap:1.4rem}
     .copyright,.funding,.footflag{grid-column:1;justify-self:center}
     .map-overlay{padding:1.6rem}
+    .topbar{flex-wrap:wrap;gap:.8rem}
+    .topbar nav{gap:1rem;font-size:.66rem}
   }
 
   @media(prefers-reduced-motion:reduce){
@@ -243,7 +280,12 @@
 
 <div class="topbar">
   <span class="mark">OCEAN&nbsp;EARS</span>
-  <span class="url"><a href="https://ocean-ears.org">ocean-ears.org</a></span>
+  <nav>
+    <a href="#team">Research Team</a>
+    <a href="#archive">The Archive</a>
+    <a href="#application">The Application</a>
+    <a href="#installations">The Installations</a>
+  </nav>
 </div>
 
 <!-- ============ HERO ============ -->
@@ -274,7 +316,7 @@
     <h2>Listening beyond the limits of human hearing.</h2>
     <div class="prose">
       <p>OCEAN EARS places whale song at the centre of an underwater orchestra — the <em>geophony</em> of earthquakes, storms and waves, the <em>biophony</em> of marine life, and the <em>anthropophony</em> of human-made noise. Rendered in hyperreal, spatial detail, these sounds let people sense the reality whales actually live in.</p>
-      <p>Drawing on more than two decades of continuous hydrophone recordings and the work of marine bioacousticians, the project transforms specialist scientific data into a <strong>public sonic library</strong> — one you can move through, not just look at.</p>
+      <p>Drawing on more than two decades of continuous hydrophone recordings and the work of marine bioacousticians, the project transforms specialist scientific data into a <strong>sonic archive</strong> — one you can listen to, not just look at.</p>
       <p>At heart, it is an argument for listening. Rising levels of human-made noise now threaten the acoustic conditions marine life depends on. To protect that world, we first have to be able to hear it.</p>
     </div>
   </div>
@@ -287,35 +329,97 @@
     <div class="readouts">
       <div class="rd"><div class="v">189&nbsp;<small>dB</small></div><div class="k">Underwater power of<br>a blue whale</div></div>
       <div class="rd"><div class="v">1000<small>km+</small></div><div class="k">How far sound carries<br>in the SOFAR channel</div></div>
-      <div class="rd"><div class="v">13<small>Hz</small>–20<small>kHz</small></div><div class="k">Frequency range of<br>baleen whale song</div></div>
+      <div class="rd"><div class="v">13<small>Hz</small>&ndash;20<small>kHz</small></div><div class="k">Frequency range of<br>baleen whale song</div></div>
       <div class="rd"><div class="v">25&nbsp;<small>yrs</small></div><div class="k">Continuous ocean<br>recordings in the archive</div></div>
     </div>
   </div>
 </section>
 
-<!-- ============ COMPONENTS ============ -->
-<section class="block">
+<!-- ============ THE ARCHIVE ============ -->
+<section class="pillar" id="archive">
   <div class="wrap reveal">
-    <div class="label">Three ways in</div>
-    <h2>An archive, an application, and installations you feel.</h2>
-    <div class="components">
-      <div class="card">
-        <div class="n">01 / Archive</div>
-        <h3>The Archive</h3>
-        <p>An intelligent, geo-tagged library of marine sound — organised by species, place, time and call type, and released as open data for science, art and conservation.</p>
-      </div>
-      <div class="card">
-        <div class="n">02 / Application</div>
-        <h3>The Application</h3>
-        <p>A browser-based listening map. Swim through 3D soundscapes, turn your head toward a singing whale, move closer, and hear the ocean change across seasons and years.</p>
-        <span class="soon">Arriving 2027</span>
-      </div>
-      <div class="card">
-        <div class="n">03 / Installations</div>
-        <h3>The Installations</h3>
-        <p>Physical spaces where whale song is felt as well as heard — infrasound below the threshold of hearing, delivered through the body as vibration.</p>
+    <div class="n">01 / Archive</div>
+    <span class="soon">Arriving 2027 / 2028</span>
+    <h2>The Archive</h2>
+    <div class="prose">
+      <p>An intelligent, geo-tagged library of marine sound — organised by species, place, time and call type, carefully attributed, and built for science, conservation and listening.</p>
+      <p>The archive depends on the recordings and expertise of the whale and ocean bioacoustics communities. Contributors keep their credit, set the terms of use, and remain part of how their sound is shared.</p>
+    </div>
+
+    <div class="credit">
+      <div class="h">With the support of</div>
+      <div class="chips">
+        <span class="chip">British Library Sound Archive</span>
+        <span class="chip">OBSEA Seafloor Observatory</span>
+        <span class="chip">NPCA Deep Listening Project</span>
+        <span class="chip">CTBTO / IMS hydrophone network</span>
+        <span class="chip">Individual researchers</span>
       </div>
     </div>
+
+    <a class="btn" href="mailto:hello@ocean-ears.org?subject=OCEAN%20EARS%20%E2%80%94%20participate">Get in touch to participate</a>
+
+    <details class="accordion">
+      <summary>How data will be used <span class="plus">+</span></summary>
+      <div class="body">
+        <p>Contributions are governed by a memorandum of understanding, tailored to each contributor's conditions. The commitments below are the project's standing principles; specific scope, attribution format and any embargo are agreed with each contributor before any data changes hands.</p>
+        <p><strong>Attribution is permanent and machine-safe.</strong> The person or body who made a recording is credited at every stage. Credit is bound to the audio through file-naming conventions and embedded metadata, and is preserved through machine processing &mdash; automated sorting, classification and machine-learning steps operate on stems that retain their provenance, so a recording can always be traced back to its source.</p>
+        <p><strong>Originals are never altered.</strong> Each contributed master is checksummed on receipt and kept unmodified. All segmentation, enhancement and analysis is performed on derivative copies; the original remains intact and retrievable.</p>
+        <p><strong>Every edit is declared.</strong> Each sound carries a complete metadata record &mdash; including latitude and longitude, recording equipment, the recordist and their purpose, and species. Any post-production or audio-repair applied by the project is logged in that record, so an edited file is never mistaken for a raw one and the scientific chain of custody stays transparent.</p>
+        <p><strong>Not-for-profit, defined use.</strong> Recordings are used for research, conservation and listening &mdash; never sold or licensed for commercial profit. Contributors set the terms of access, may set embargoes until their own work is published, and retain the right to correct attribution.</p>
+        <p>Detailed terms and MoU templates will be published here.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ============ THE APPLICATION ============ -->
+<section class="pillar" id="application">
+  <div class="wrap reveal">
+    <div class="n">02 / Application</div>
+    <span class="soon">Arriving 2027 / 2028</span>
+    <h2>The Application</h2>
+    <div class="prose">
+      <p>A browser-based listening map. Swim through 3D soundscapes, turn your head toward a singing whale, move closer, and hear the ocean change across seasons and years.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE INSTALLATIONS ============ -->
+<section class="pillar" id="installations">
+  <div class="wrap reveal">
+    <div class="n">03 / Installations</div>
+    <span class="soon">Arriving 2027 / 2028</span>
+    <h2>Tactile immersive installations</h2>
+    <div class="prose">
+      <p>Physical spaces where whale song is felt as well as heard — infrasound below the threshold of hearing, delivered through the body as vibration.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESEARCH TEAM ============ -->
+<section class="pillar" id="team">
+  <div class="wrap reveal">
+    <div class="label">Research team</div>
+    <h2>The lab and collaborators.</h2>
+    <div class="team">
+      <div class="person">
+        <div class="role">Fellow / principal investigator</div>
+        <h3><a href="https://otoplasma.com" target="_blank" rel="noopener">Dr Cobi van Tonder</a></h3>
+        <p>Practice-led researcher in spatial and infrasound listening. Designs the archive, analysis workflow and listening methods.</p>
+      </div>
+      <div class="person">
+        <div class="role">Spatial audio &amp; XR supervisor</div>
+        <h3><a href="https://www.sorbonne-universite.fr/en/portraits/brian-fg-katz" target="_blank" rel="noopener">Dr Brian Katz</a></h3>
+        <p>Spatial audio, virtual acoustics and immersive listening. Leads the technical methods for 3D / 6DoF rendering.</p>
+      </div>
+      <div class="person">
+        <div class="role">Bioacoustics supervisor</div>
+        <h3><a href="https://www.sorbonne-universite.fr/portraits/olivier-adam" target="_blank" rel="noopener">Prof. Olivier Adam</a></h3>
+        <p>Marine bioacoustics and signal processing. Guides the survey, sorting and analysis of whale vocalisations.</p>
+      </div>
+    </div>
+    <p class="inst">Hosted at <strong>Sorbonne Universit&eacute;</strong>, Paris, within the <a href="https://www.dalembert.upmc.fr/ijlrda/" target="_blank" rel="noopener">Institut Jean Le Rond &part;'Alembert</a> &mdash; in the LAM team (Lutheries &middot; Acoustique &middot; Musique), where sound and music are studied across acoustics, signal processing and sono-vibro-tactile research.</p>
   </div>
 </section>
 
@@ -332,7 +436,6 @@
             <stop offset="100%" stop-color="#6ff0ff" stop-opacity="0"/>
           </radialGradient>
         </defs>
-        <!-- faint lat/long grid -->
         <g stroke="rgba(120,210,220,.10)" stroke-width="1">
           <line x1="0" y1="73" x2="1140" y2="73"/><line x1="0" y1="146" x2="1140" y2="146"/>
           <line x1="0" y1="220" x2="1140" y2="220"/><line x1="0" y1="293" x2="1140" y2="293"/>
@@ -342,7 +445,6 @@
           <line x1="712" y1="0" x2="712" y2="440"/><line x1="855" y1="0" x2="855" y2="440"/>
           <line x1="997" y1="0" x2="997" y2="440"/>
         </g>
-        <!-- listening stations -->
         <g id="stations"></g>
       </svg>
       <div class="map-overlay">
@@ -355,7 +457,7 @@
 
 <!-- ============ FOOTER ============ -->
 <footer>
-  <div class="copyright">© 2026 Cobi van Tonder — Sound Swimming with Whales</div>
+  <div class="copyright">&copy; 2026 Cobi van Tonder &mdash; Sound Swimming with Whales</div>
   <div class="funding">This project has received funding from the European Commission Horizon 2020 research and innovation programme under the Marie Sk&#322;odowska-Curie grant agreement 101283235.</div>
   <div class="footflag"><span class="eu"></span> EU&nbsp;FUNDED</div>
 </footer>
