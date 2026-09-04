@@ -11,8 +11,8 @@
     --glow-soft:rgba(142,193,255,.16);
     /* Light */
     --foam:#eef3fa;
-    --foam-dim:rgba(238,243,250,.66);
-    --foam-faint:rgba(238,243,250,.40);
+    --foam-dim:rgba(238,243,250,.84);
+    --foam-faint:rgba(238,243,250,.66);
     --line:rgba(150,190,240,.16);
     --line-strong:rgba(150,190,240,.32);
     --display:"Fraunces",Georgia,serif;
@@ -46,12 +46,12 @@
     position:relative;z-index:3;
     display:flex;justify-content:space-between;align-items:center;
     max-width:1140px;margin:0 auto;padding:26px 28px 0;
-    font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;
+    font-size:1rem;letter-spacing:.12em;text-transform:uppercase;
     color:var(--foam-dim);
   }
   .topbar .mark{font-family:var(--mono);color:var(--foam);letter-spacing:.32em}
-  .topbar nav{display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:flex-end}
-  .topbar nav a{font-family:var(--mono);color:var(--foam-dim);text-decoration:none;transition:color .3s;white-space:nowrap}
+  .topbar nav{display:flex;gap:2rem;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+  .topbar nav a{font-family:var(--mono);color:var(--foam);text-decoration:none;transition:color .3s;white-space:nowrap;padding:.6rem 0;display:inline-block}
   .topbar nav a:hover{color:var(--glow)}
   .navtoggle{display:none}
 
@@ -82,7 +82,7 @@
 
   .hero-inner{position:relative;z-index:2}
   .eyebrow{
-    font-family:var(--mono);font-size:.78rem;letter-spacing:.42em;text-transform:uppercase;
+    font-family:var(--mono);font-size:.9rem;letter-spacing:.3em;text-transform:uppercase;
     color:var(--glow);margin-bottom:1.6rem;
     display:flex;align-items:center;gap:.9rem;
   }
@@ -110,7 +110,7 @@
   }
   .scrollcue{
     margin-top:3.4rem;display:flex;align-items:center;gap:.8rem;
-    font-family:var(--mono);font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;
+    font-family:var(--mono);font-size:.85rem;letter-spacing:.22em;text-transform:uppercase;
     color:var(--foam-faint);
   }
   .scrollcue .dot{
@@ -124,7 +124,7 @@
   section{position:relative;z-index:2}
   .block{padding:7rem 0;scroll-margin-top:80px}
   .label{
-    font-family:var(--mono);font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;
+    font-family:var(--mono);font-size:.9rem;letter-spacing:.24em;text-transform:uppercase;
     color:var(--glow);margin-bottom:1.6rem;
   }
   h2{
@@ -133,7 +133,7 @@
     letter-spacing:-.01em;max-width:18ch;margin-bottom:2.2rem;
   }
   .prose{max-width:60ch}
-  .prose p{font-weight:300;color:var(--foam-dim);font-size:1.12rem;margin-bottom:1.3rem}
+  .prose p{font-weight:400;color:var(--foam-dim);font-size:1.18rem;margin-bottom:1.3rem}
   .prose p strong{color:var(--foam);font-weight:500}
   .prose em{font-style:italic;color:var(--glow-2)}
 
@@ -149,14 +149,14 @@
   }
   .rd .v{font-family:var(--display);font-weight:400;font-size:clamp(1.7rem,3.4vw,2.5rem);color:var(--foam);line-height:1}
   .rd .v small{font-size:.5em;color:var(--glow);font-family:var(--mono);font-weight:400;letter-spacing:.02em}
-  .rd .k{font-family:var(--mono);font-size:.72rem;line-height:1.5;letter-spacing:.04em;color:var(--foam-faint);margin-top:.9rem;text-transform:uppercase}
+  .rd .k{font-family:var(--mono);font-size:.88rem;line-height:1.5;letter-spacing:.04em;color:var(--foam-faint);margin-top:.9rem;text-transform:uppercase}
 
   /* ---------- pillar sections ---------- */
   .pillar{padding:6rem 0;border-top:1px solid var(--line);scroll-margin-top:80px}
-  .pillar .n{font-family:var(--mono);font-size:.72rem;letter-spacing:.3em;color:var(--glow);text-transform:uppercase;margin-bottom:1.1rem}
+  .pillar .n{font-family:var(--mono);font-size:.9rem;letter-spacing:.22em;color:var(--glow);text-transform:uppercase;margin-bottom:1.1rem}
   .pillar h2{margin-bottom:1.6rem}
   .soon{
-    display:inline-block;font-family:var(--mono);font-size:.66rem;
+    display:inline-block;font-family:var(--mono);font-size:.85rem;
     letter-spacing:.18em;text-transform:uppercase;color:var(--glow-2);
     border:1px solid rgba(185,216,255,.32);border-radius:100px;padding:.32rem .8rem;
     margin-bottom:1.6rem;
@@ -164,13 +164,13 @@
 
   /* contributors / credit block under the archive */
   .credit{margin-top:2.6rem;padding-top:2rem;border-top:1px solid var(--line)}
-  .credit .h{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--foam-faint);margin-bottom:1.2rem}
+  .credit .h{font-family:var(--mono);font-size:.88rem;letter-spacing:.2em;text-transform:uppercase;color:var(--foam-faint);margin-bottom:1.2rem}
   .chips{display:flex;flex-wrap:wrap;gap:.7rem}
-  .chip{font-family:var(--mono);font-size:.78rem;color:var(--foam-dim);
+  .chip{font-family:var(--mono);font-size:.95rem;color:var(--foam-dim);
     border:1px solid var(--line);border-radius:100px;padding:.5rem 1.1rem;background:rgba(16,42,90,.3)}
 
   /* CTA button */
-  .btn{display:inline-block;margin-top:2rem;font-family:var(--mono);font-size:.78rem;letter-spacing:.12em;
+  .btn{display:inline-block;margin-top:2rem;font-family:var(--mono);font-size:.95rem;letter-spacing:.12em;
     text-transform:uppercase;text-decoration:none;padding:.95rem 1.6rem;border-radius:3px;transition:all .3s;
     background:var(--glow);color:#0a1a3c;font-weight:500}
   .btn:hover{background:var(--glow-2);box-shadow:0 0 24px rgba(142,193,255,.4)}
@@ -181,13 +181,13 @@
   .accordion summary{
     list-style:none;cursor:pointer;padding:1.4rem 1.6rem;
     display:flex;justify-content:space-between;align-items:center;gap:1rem;
-    font-family:var(--mono);font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;color:var(--foam);
+    font-family:var(--mono);font-size:1rem;letter-spacing:.06em;text-transform:uppercase;color:var(--foam);
   }
   .accordion summary::-webkit-details-marker{display:none}
   .accordion summary .plus{color:var(--glow);font-size:1.2rem;transition:transform .3s}
   .accordion[open] summary .plus{transform:rotate(45deg)}
   .accordion .body{padding:0 1.6rem 1.7rem}
-  .accordion .body p{font-weight:300;color:var(--foam-dim);font-size:1.02rem;margin-bottom:1rem;max-width:60ch}
+  .accordion .body p{font-weight:400;color:var(--foam-dim);font-size:1.1rem;margin-bottom:1rem;max-width:60ch}
   .accordion .body p:last-child{margin-bottom:0}
 
   /* ---------- research team ---------- */
@@ -195,12 +195,12 @@
   .person{border:1px solid var(--line);border-radius:4px;padding:1.9rem 1.6rem;
     background:linear-gradient(180deg,rgba(20,48,100,.32),rgba(9,22,52,.3));transition:border-color .4s}
   .person:hover{border-color:var(--line-strong)}
-  .person .role{font-family:var(--mono);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--glow)}
+  .person .role{font-family:var(--mono);font-size:.85rem;letter-spacing:.18em;text-transform:uppercase;color:var(--glow)}
   .person h3{font-family:var(--display);font-weight:400;font-size:1.3rem;margin:.7rem 0 .5rem}
   .person h3 a{color:var(--foam);text-decoration:none;border-bottom:1px solid transparent;transition:color .3s,border-color .3s}
   .person h3 a:hover{color:var(--glow);border-bottom-color:var(--glow)}
-  .person p{font-weight:300;color:var(--foam-dim);font-size:.95rem}
-  .inst{margin-top:2.4rem;padding-top:1.8rem;border-top:1px solid var(--line);font-size:1.02rem;color:var(--foam-dim);font-weight:300;max-width:62ch}
+  .person p{font-weight:400;color:var(--foam-dim);font-size:1.05rem}
+  .inst{margin-top:2.4rem;padding-top:1.8rem;border-top:1px solid var(--line);font-size:1.1rem;color:var(--foam-dim);font-weight:400;max-width:62ch}
   .inst strong{color:var(--foam);font-weight:500}
   .inst a{color:var(--glow);text-decoration:none;border-bottom:1px solid rgba(142,193,255,.35);transition:border-color .3s}
   .inst a:hover{border-bottom-color:var(--glow)}
@@ -229,12 +229,12 @@
     max-width:1140px;margin:0 auto;
     display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:1.2rem;
   }
-  .copyright{font-size:.74rem;color:var(--foam-faint);letter-spacing:.01em;grid-column:1}
+  .copyright{font-size:.9rem;color:var(--foam-faint);letter-spacing:.01em;grid-column:1}
   .funding{
     grid-column:2;text-align:center;max-width:62ch;
-    font-size:.72rem;line-height:1.55;color:var(--foam-faint);
+    font-size:.88rem;line-height:1.55;color:var(--foam-faint);
   }
-  .footflag{grid-column:3;justify-self:end;display:flex;align-items:center;gap:.6rem;color:var(--foam-faint);font-family:var(--mono);font-size:.66rem;letter-spacing:.12em}
+  .footflag{grid-column:3;justify-self:end;display:flex;align-items:center;gap:.6rem;color:var(--foam-faint);font-family:var(--mono);font-size:.85rem;letter-spacing:.12em}
   .eu{width:30px;height:20px;border-radius:2px;flex:none;
     background:#0a2a6c;position:relative;overflow:hidden}
   .eu::after{content:"\2605\2605\2605\2605\2605\2605";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
@@ -254,7 +254,7 @@
     .copyright,.funding,.footflag{grid-column:1;justify-self:center}
     .map-overlay{padding:1.6rem}
     .topbar{flex-wrap:wrap;gap:.8rem}
-    .topbar nav{gap:1rem;font-size:.66rem}
+    .topbar nav{gap:1.2rem;font-size:.95rem}
   }
 
   @media(prefers-reduced-motion:reduce){
@@ -266,3 +266,14 @@
 .topbar .mark{text-decoration:none}
 .topbar nav a[aria-current]{color:var(--glow)}
 .pillar.first{border-top:0;padding-top:6rem;min-height:70vh}
+
+/* ---------- paragraphs: always justified ---------- */
+p{text-align:justify;text-justify:inter-word;hyphens:auto;-webkit-hyphens:auto;overflow-wrap:break-word}
+
+/* ---------- phone: menu as a tidy left-aligned block; no sideways scroll ---------- */
+.hero{overflow:hidden}
+@media(max-width:860px){
+  .topbar{flex-direction:column;align-items:flex-start;gap:.6rem;padding-top:20px}
+  .topbar nav{justify-content:flex-start;gap:.1rem 1.4rem;font-size:1rem}
+  .topbar nav a{padding:.45rem 0}
+}
