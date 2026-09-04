@@ -168,3 +168,4 @@ figcaption b{color:var(--foam-dim);font-weight:500}
 .cover.flyer{max-width:620px;margin:0 auto 3rem}
 .cover.flyer img{aspect-ratio:auto;object-fit:contain;cursor:zoom-in}
 .feature img.contain,.card img.contain{object-fit:contain;background:var(--deep)}
+.cover.banner img{aspect-ratio:auto;object-fit:contain}
