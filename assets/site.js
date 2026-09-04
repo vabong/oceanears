@@ -1,7 +1,8 @@
 (function(){
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 /* ---- marine snow ---- */
-  var snowRGB=(getComputedStyle(document.documentElement).getPropertyValue('--snow')||'220,232,250').trim();
+  function readSnow(){return (getComputedStyle(document.documentElement).getPropertyValue('--snow')||'220,232,250').trim();}
+  var snowRGB=readSnow(); addEventListener('themechange',function(){snowRGB=readSnow();});
   var c=document.getElementById('seafield'), x=c.getContext('2d'), parts=[], DPR=Math.min(window.devicePixelRatio||1,2);
   function size(){c.width=innerWidth*DPR;c.height=innerHeight*DPR;x.setTransform(DPR,0,0,DPR,0,0);}
   size();addEventListener('resize',size);
@@ -56,5 +57,16 @@
     }
     layout();
     var t; addEventListener('resize',function(){clearTimeout(t);t=setTimeout(layout,120);});
+  });
+  /* light / high-contrast toggle: blue by default, the choice is remembered */
+  document.querySelectorAll('.theme-toggle').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var root=document.documentElement;
+      var next=root.getAttribute('data-theme')==='light'?'dark':'light';
+      if(next==='light'){root.setAttribute('data-theme','light');}else{root.removeAttribute('data-theme');}
+      try{localStorage.setItem('theme',next);}catch(e){}
+      btn.setAttribute('aria-pressed',next==='light'?'true':'false');
+      dispatchEvent(new Event('themechange'));
+    });
   });
 })();

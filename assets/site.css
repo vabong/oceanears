@@ -418,3 +418,46 @@ footer{border-top:0;margin-top:1rem;padding-top:1.8rem;padding-bottom:3.4rem}
   .block,.pillar{padding-bottom:var(--gap)}
   :root{--radius:14px;--gap:1rem}
 }
+
+/* =====================================================================
+   LIGHT / HIGH-CONTRAST MODE: opaque white cards, navy text.
+   Chosen with the toggle; also used when the system asks for more
+   contrast or reduced transparency.
+   ===================================================================== */
+:root[data-theme="light"]{
+  --surface:#dfe9f7; --upper:#e6eef9; --mid:#eef3fa; --deep:#f5f8fc; --abyss:#ffffff;
+  --glow:#1f4590; --glow-2:#173a7a; --glow-soft:rgba(31,69,144,.12);
+  --foam:#0b1a3c; --foam-dim:rgba(11,26,60,.88); --foam-faint:rgba(11,26,60,.72);
+  --line:rgba(31,69,144,.22); --line-strong:rgba(31,69,144,.45);
+  --panel:rgba(31,69,144,.07); --panel-a:rgba(31,69,144,.08); --panel-b:rgba(31,69,144,.04);
+  --card-a:#ffffff; --card-b:#ffffff;
+  --overlay:rgba(255,255,255,.92); --overlay-soft:rgba(255,255,255,.7); --lb-bg:rgba(255,255,255,.97);
+  --accent-line:rgba(31,69,144,.45); --accent-line-2:rgba(31,69,144,.45);
+  --accent-shadow:rgba(31,69,144,.3); --hover-row:rgba(31,69,144,.06);
+  --wave-1:rgba(31,69,144,.9); --wave-2:rgba(31,69,144,.5); --wave-3:rgba(31,69,144,.3);
+  --caustic-1:rgba(31,69,144,.08); --caustic-2:rgba(31,69,144,.06); --caustic-blend:multiply;
+  --grid-line:rgba(31,69,144,.14); --btn-ink:#ffffff; --scrollbar:rgba(11,26,60,.55);
+  --snow:31,69,144; --snow-alpha:0;
+  --mapcard-a:#ffffff; --mapcard-b:#ffffff;
+  --glass:#ffffff; --glass-edge:rgba(31,69,144,.25); --glass-shadow:0 18px 50px rgba(11,26,60,.16);
+}
+:root[data-theme="light"] .glass,:root[data-theme="light"] .person,:root[data-theme="light"] .map-card,:root[data-theme="light"] .card{-webkit-backdrop-filter:none;backdrop-filter:none}
+:root[data-theme="light"] .glass::before{display:none}
+:root[data-theme="light"] #seafield{display:none}
+:root[data-theme="light"] h1.title,:root[data-theme="light"] .jhead h1,:root[data-theme="light"] .entry-head h1{text-shadow:none}
+:root[data-theme="light"] .topbar nav a{color:var(--foam)}
+:root[data-theme="light"] .rd{background:var(--panel)}
+:root[data-theme="light"] .btn{background:var(--glow)}
+:root[data-theme="light"] figure img,:root[data-theme="light"] .gallery img{box-shadow:0 10px 30px rgba(11,26,60,.18)}
+/* system preferences: solid cards even in the blue theme */
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more){
+  :root:not([data-theme="light"]){--glass:#0b1a3c;--glass-edge:rgba(142,193,255,.35)}
+  .glass,.person,.map-card,.card{-webkit-backdrop-filter:none;backdrop-filter:none}
+}
+/* theme toggle in the menu */
+.theme-toggle{background:none;border:1px solid var(--line-strong);border-radius:100px;width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;color:var(--foam);margin-left:.6rem;padding:0;transition:border-color .3s,color .3s;vertical-align:middle;flex:none}
+.theme-toggle:hover,.theme-toggle:focus-visible{border-color:var(--glow);color:var(--glow);outline:none}
+.theme-toggle svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.theme-toggle .sun{display:block}.theme-toggle .moon{display:none}
+:root[data-theme="light"] .theme-toggle .sun{display:none}:root[data-theme="light"] .theme-toggle .moon{display:block}
+@media(max-width:860px){.theme-toggle{margin-left:0}}
