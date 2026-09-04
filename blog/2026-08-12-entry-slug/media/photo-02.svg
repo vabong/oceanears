@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1067" width="1600" height="1067">
-<defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0d456a"/><stop offset="1" stop-color="#02101d"/></linearGradient>
-<radialGradient id="c" cx="35%" cy="10%" r="70%"><stop offset="0" stop-color="#9ff" stop-opacity=".28"/><stop offset="1" stop-color="#9ff" stop-opacity="0"/></radialGradient></defs>
-<rect width="1600" height="1067" fill="url(#g)"/><rect width="1600" height="1067" fill="url(#c)"/>
-<path d="M0 661 Q 400 586 800 672 T 1600 640" fill="none" stroke="rgba(84,232,212,.55)" stroke-width="2"/>
-<text x="50%" y="28%" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="42" letter-spacing="3" fill="rgba(234,247,246,.7)">PHOTO 02</text>
-</svg>
