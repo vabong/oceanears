@@ -301,3 +301,4 @@ table.plain tr:hover td{background:rgba(142,193,255,.05)}
   .block .prose p,.pillar .prose p{break-inside:avoid}
   .block .prose p:last-child,.pillar .prose p:last-child{margin-bottom:0}
 }
+.pillar .subtitle{font-family:var(--display);font-style:italic;font-weight:300;font-size:clamp(1.25rem,2.6vw,1.8rem);color:var(--glow-2);margin:-1.4rem 0 2.2rem;text-align:left}
