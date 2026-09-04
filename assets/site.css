@@ -310,3 +310,6 @@ table.plain tr:hover td{background:rgba(142,193,255,.05)}
 .refs{margin:1.6rem auto 0;max-width:80ch;padding-left:1.4rem;font-size:.92rem;line-height:1.55;color:var(--foam-dim)}
 .refs li{margin-bottom:.55rem;padding-left:.3rem;text-align:left}
 .refs a{color:var(--glow);text-decoration:none;border-bottom:1px solid rgba(142,193,255,.35);overflow-wrap:anywhere}
+.keyterms{margin-top:1.6rem}
+.keyterms p{font-size:1.05rem}
+.keyterms p strong{color:var(--glow)}
