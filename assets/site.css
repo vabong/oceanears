@@ -461,3 +461,14 @@ footer{border-top:0;margin-top:1rem;padding-top:1.8rem;padding-bottom:3.4rem}
 .theme-toggle .sun{display:block}.theme-toggle .moon{display:none}
 :root[data-theme="light"] .theme-toggle .sun{display:none}:root[data-theme="light"] .theme-toggle .moon{display:block}
 @media(max-width:860px){.theme-toggle{margin-left:0}}
+
+/* ---------- landing page: three facets ---------- */
+.hero.glass{margin-bottom:var(--gap)}
+.facets{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);margin-bottom:var(--gap)}
+.facet{display:flex;flex-direction:column;gap:.7rem;padding:1.9rem 2rem 2rem;text-decoration:none;color:inherit;transition:transform .4s,box-shadow .4s}
+.facet:hover{transform:translateY(-3px)}
+.facet .n{font-family:var(--mono);font-size:.85rem;letter-spacing:.22em;text-transform:uppercase;color:var(--glow)}
+.facet h3{font-family:var(--display);font-weight:400;font-size:1.6rem;line-height:1.1}
+.facet p{font-size:1.02rem;line-height:1.6;color:var(--foam-dim);text-align:left;margin:0}
+.facet .more{margin-top:auto;padding-top:.6rem;font-family:var(--mono);font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;color:var(--glow)}
+@media(max-width:1000px){.facets{grid-template-columns:1fr}}
