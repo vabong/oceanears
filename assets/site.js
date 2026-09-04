@@ -19,8 +19,14 @@
   if(reduce) snow(); else requestAnimationFrame(snow);
 
   /* ---- reveal on scroll ---- */
+  var rev=document.querySelectorAll('.reveal');
   if('IntersectionObserver' in window){
-    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.18});
-    document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
-  } else { document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');}); }
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0,rootMargin:'0px 0px -10% 0px'});
+    rev.forEach(function(el){
+      var r=el.getBoundingClientRect();
+      /* anything already on screen, or taller than the viewport, shows at once */
+      if(r.top<innerHeight && r.bottom>0 || r.height>innerHeight*.8){el.classList.add('in');}
+      else io.observe(el);
+    });
+  } else { rev.forEach(function(el){el.classList.add('in');}); }
 })();
