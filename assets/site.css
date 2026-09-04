@@ -421,11 +421,11 @@ footer{border-top:0;margin-top:1rem;padding-top:1.8rem;padding-bottom:3.4rem}
 
 /* =====================================================================
    LIGHT CARDS MODE: the ocean stays; content cards turn frosted white
-   (75%) with navy text. Title cards and the hero stay blue.
+   (75%) with navy text, headings and hero included.
    Chosen with the toggle; also used for reduced-transparency /
    high-contrast system settings, then fully opaque.
    ===================================================================== */
-:root[data-theme="light"] .glass:not(.title):not(.hero),
+:root[data-theme="light"] .glass,
 :root[data-theme="light"] .person,
 :root[data-theme="light"] .map-card,
 :root[data-theme="light"] .card{
@@ -442,7 +442,7 @@ footer{border-top:0;margin-top:1rem;padding-top:1.8rem;padding-bottom:3.4rem}
   --glass:rgba(255,255,255,.75); --glass-edge:rgba(255,255,255,.9); --glass-shadow:0 24px 60px rgba(2,10,30,.35);
   color:var(--foam);
 }
-:root[data-theme="light"] .glass:not(.title):not(.hero)::before{background:linear-gradient(120deg,rgba(255,255,255,.35),transparent 45%)}
+:root[data-theme="light"] .glass::before{background:linear-gradient(120deg,rgba(255,255,255,.35),transparent 45%)}
 :root[data-theme="light"] .prose.cols .col{background:var(--glass)}
 :root[data-theme="light"] .rd{background:rgba(31,69,144,.06)}
 :root[data-theme="light"] .lb{--lb-bg:rgba(255,255,255,.96)}
@@ -451,7 +451,7 @@ footer{border-top:0;margin-top:1rem;padding-top:1.8rem;padding-bottom:3.4rem}
 @media (prefers-reduced-transparency: reduce), (prefers-contrast: more){
   .glass,.person,.map-card,.card,.prose.cols .col{-webkit-backdrop-filter:none;backdrop-filter:none}
   :root:not([data-theme="light"]) .glass,:root:not([data-theme="light"]) .person,:root:not([data-theme="light"]) .card{--glass:#0b1a3c}
-  :root[data-theme="light"] .glass:not(.title):not(.hero),:root[data-theme="light"] .person,:root[data-theme="light"] .card{--glass:#ffffff;--card-a:#ffffff;--card-b:#ffffff}
+  :root[data-theme="light"] .glass,:root[data-theme="light"] .person,:root[data-theme="light"] .card{--glass:#ffffff;--card-a:#ffffff;--card-b:#ffffff}
 }
 /* theme toggle in the menu */
 .theme-toggle{background:none;border:1px solid var(--line-strong);border-radius:100px;width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;color:var(--foam);margin-left:.6rem;padding:0;transition:border-color .3s,color .3s;vertical-align:middle;flex:none}
@@ -473,3 +473,11 @@ footer{border-top:0;margin-top:1rem;padding-top:1.8rem;padding-bottom:3.4rem}
 @media(max-width:1000px){.facets{grid-template-columns:1fr}}
 .hero.glass .hero-inner{padding-top:1rem}
 .facet{gap:.9rem}
+
+/* light cards: hero and headings follow */
+:root[data-theme="light"] .glass{--wave-1:rgba(31,69,144,.9);--wave-2:rgba(31,69,144,.5);--wave-3:rgba(31,69,144,.3)}
+:root[data-theme="light"] .hero.glass h1.title,:root[data-theme="light"] .jhead h1,:root[data-theme="light"] .entry-head h1{text-shadow:none}
+:root[data-theme="light"] .hero.glass .subtitle{color:var(--glow-2)}
+:root[data-theme="light"] .glass .soon{color:var(--glow-2);border-color:var(--accent-line-2)}
+:root[data-theme="light"] .glass .tag,:root[data-theme="light"] .glass .chip,:root[data-theme="light"] .glass .sbtn{color:var(--glow-2);border-color:var(--accent-line-2);background:var(--panel)}
+:root[data-theme="light"] .glass .btn{background:var(--glow);color:#fff}
