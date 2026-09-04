@@ -174,3 +174,4 @@ figcaption b{color:var(--foam-dim);font-weight:500}
 .card img{aspect-ratio:16/9;height:auto}
 .card img.contain{object-fit:contain;background:var(--deep)}
 .card .body{flex:1}
+.card.noimg .body{padding-top:1.9rem}
