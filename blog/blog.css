@@ -165,3 +165,6 @@ figcaption b{color:var(--foam-dim);font-weight:500}
 .entry .prose h3{font-family:var(--display);font-weight:400;font-size:1.6rem;margin:2.2rem 0 .8rem;color:var(--foam)}
 .gallery.flyer{max-width:560px;margin:2.4rem auto}
 .gallery.flyer img{aspect-ratio:auto;cursor:zoom-in}
+.cover.flyer{max-width:620px;margin:0 auto 3rem}
+.cover.flyer img{aspect-ratio:auto;object-fit:contain;cursor:zoom-in}
+.feature img.contain,.card img.contain{object-fit:contain;background:var(--deep)}
