@@ -472,3 +472,5 @@ footer{border-top:0;margin-top:1rem;padding-top:1.8rem;padding-bottom:3.4rem}
 .facet p{font-size:1.02rem;line-height:1.6;color:var(--foam-dim);text-align:left;margin:0}
 .facet .more{margin-top:auto;padding-top:.6rem;font-family:var(--mono);font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;color:var(--glow)}
 @media(max-width:1000px){.facets{grid-template-columns:1fr}}
+.hero.glass .hero-inner{padding-top:1rem}
+.facet{gap:.9rem}
