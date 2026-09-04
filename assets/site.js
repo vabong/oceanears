@@ -29,4 +29,6 @@
       else io.observe(el);
     });
   } else { rev.forEach(function(el){el.classList.add('in');}); }
+  /* hide the swipe hint once a diagram has been scrolled */
+  document.querySelectorAll('.infogram-wrap').forEach(function(w){w.addEventListener('scroll',function(){w.classList.add('scrolled');},{passive:true});});
 })();
