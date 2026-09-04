@@ -175,3 +175,9 @@ figcaption b{color:var(--foam-dim);font-weight:500}
 .card img.contain{object-fit:contain;background:var(--deep)}
 .card .body{flex:1}
 .card.noimg .body{padding-top:1.9rem}
+.gallery.natural{grid-template-columns:repeat(3,1fr)}
+.gallery.natural[data-n="1"]{grid-template-columns:1fr}
+.gallery.natural[data-n="2"]{grid-template-columns:1fr 1fr}
+.gallery.natural img{aspect-ratio:auto;object-fit:contain;background:var(--abyss)}
+.credit-line{font-family:var(--mono);font-size:.85rem;letter-spacing:.06em;color:var(--foam-faint);margin:-1.2rem 0 2rem;text-align:right}
+@media(max-width:560px){.gallery.natural{grid-template-columns:1fr 1fr}}
