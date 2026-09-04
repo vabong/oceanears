@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>OCEAN EARS — Sound Swimming with Whales</title>
 <meta name="description" content="OCEAN EARS is an immersive listening project that renders the underwater acoustic world of whales in hyperreal spatial detail — making the ocean's hidden soundscape audible, tangible, and worth protecting." />
@@ -35,7 +36,7 @@
 </div>
 
 <!-- ============ HERO ============ -->
-<header class="hero">
+<header class="hero glass">
   <div class="caustics"></div>
   <div class="wavewrap" id="wavewrap" aria-hidden="true">
     <svg viewBox="0 0 1200 340" preserveAspectRatio="none">
@@ -58,8 +59,10 @@
 <!-- ============ INTRO ============ -->
 <section class="block">
   <div class="wrap reveal">
+    <div class="glass title">
     <div class="label">The project</div>
     <h2>Listening beyond the limits of human hearing.</h2>
+    </div>
     <div class="prose">
       <p>OCEAN EARS places whale song at the centre of an underwater orchestra — the <em>geophony</em> of earthquakes, storms and waves, the <em>biophony</em> of marine life, and the <em>anthropophony</em> of human-made noise. Rendered in hyperreal, spatial detail, these sounds let people sense the reality whales actually live in.</p>
       <p>Drawing on more than two decades of continuous hydrophone recordings and the work of marine bioacousticians, the project transforms specialist scientific data into a <strong>sonic archive</strong> — one you can listen to, not just look at.</p>
@@ -70,7 +73,7 @@
 
 <!-- ============ DATA READOUTS ============ -->
 <section class="block" style="padding-top:0">
-  <div class="wrap reveal">
+  <div class="wrap reveal glass readouts-card">
     <div class="label">From the hydrophones</div>
     <div class="readouts">
       <div class="rd"><div class="v">189&nbsp;<small>dB</small></div><div class="k">Underwater power of<br>a blue whale</div></div>
@@ -84,17 +87,19 @@
 <!-- ============ LISTENING MAP TEASER ============ -->
 <section class="map-block">
   <div class="wrap reveal">
+    <div class="glass title">
     <div class="label">In development</div>
     <h2>The Listening Map.</h2>
+    </div>
     <div class="map-card">
       <svg class="grid-svg" viewBox="0 0 1140 440" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
         <defs>
           <radialGradient id="ping" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#b9d8ff" stop-opacity=".9"/>
-            <stop offset="100%" stop-color="#b9d8ff" stop-opacity="0"/>
+            <stop offset="0%" style="stop-color:var(--glow-2)" stop-opacity=".9"/>
+            <stop offset="100%" style="stop-color:var(--glow-2)" stop-opacity="0"/>
           </radialGradient>
         </defs>
-        <g stroke="rgba(150,190,240,.10)" stroke-width="1">
+        <g stroke="var(--grid-line)" stroke-width="1">
           <line x1="0" y1="73" x2="1140" y2="73"/><line x1="0" y1="146" x2="1140" y2="146"/>
           <line x1="0" y1="220" x2="1140" y2="220"/><line x1="0" y1="293" x2="1140" y2="293"/>
           <line x1="0" y1="366" x2="1140" y2="366"/>

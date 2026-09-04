@@ -36,7 +36,7 @@
     ping.setAttribute('fill','url(#ping)');
     var core=document.createElementNS(svgns,'circle');
     core.setAttribute('cx',s[0]);core.setAttribute('cy',s[1]);core.setAttribute('r','2.4');
-    core.setAttribute('fill','#b9d8ff');
+    core.style.fill='var(--glow-2)';
     if(!reduce){
       var an=document.createElementNS(svgns,'animate');
       an.setAttribute('attributeName','r');an.setAttribute('values','3;26;3');
@@ -48,7 +48,7 @@
     }
     var lbl=document.createElementNS(svgns,'text');
     lbl.setAttribute('x',s[0]+10);lbl.setAttribute('y',s[1]+4);
-    lbl.setAttribute('fill','rgba(238,243,250,.55)');
+    lbl.style.fill='var(--foam-faint)';
     lbl.setAttribute('font-family',"'IBM Plex Mono',monospace");
     lbl.setAttribute('font-size','11');lbl.setAttribute('letter-spacing','1');
     lbl.textContent=s[2];
