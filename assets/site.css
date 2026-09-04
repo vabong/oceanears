@@ -343,3 +343,7 @@ table.plain tr:hover td{background:rgba(142,193,255,.05)}
   .infogram-wrap.scrolled + .scroll-hint{opacity:0}
 }
 @keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(6px)}}
+@media(max-width:860px){
+  .infogram-wrap{margin-bottom:.2rem;padding-bottom:.4rem}
+  .scroll-hint{margin:0 0 2.4rem}
+}
