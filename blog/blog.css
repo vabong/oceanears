@@ -169,3 +169,8 @@ figcaption b{color:var(--foam-dim);font-weight:500}
 .cover.flyer img{aspect-ratio:auto;object-fit:contain;cursor:zoom-in}
 .feature img.contain,.card img.contain{object-fit:contain;background:var(--deep)}
 .cover.banner img{aspect-ratio:auto;object-fit:contain}
+/* uniform cards: identical image box and equal heights across a row */
+.cards{align-items:stretch}
+.card img{aspect-ratio:16/9;height:auto}
+.card img.contain{object-fit:contain;background:var(--deep)}
+.card .body{flex:1}
