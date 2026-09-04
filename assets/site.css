@@ -266,3 +266,4 @@ h1.title{font-size:clamp(1.9rem,4vw,2.7rem)}
   .gallery.natural{grid-template-columns:repeat(3,1fr)}
 }
 .meta .no{color:var(--ink-3);font-size:.7rem;letter-spacing:.08em}
+footer .contact{margin-top:.35rem}
