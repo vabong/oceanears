@@ -279,3 +279,16 @@ footer .contact{margin-top:.35rem}
 .prose blockquote.voice{border-left:2px solid var(--accent);padding:.2rem 0 .2rem 1.2rem;margin:0 0 1.6rem;font-size:1.12rem;line-height:1.55;color:var(--ink);break-inside:avoid;column-span:all}
 .prose blockquote.voice p{margin:0 0 .6rem;font-size:inherit;line-height:inherit;font-style:italic;font-weight:450}
 .prose blockquote.voice p:last-child{margin-bottom:0}
+/* contact: address shown, copy button, quiet mail-app link */
+.contact-block{margin-top:1.4rem}
+.contact-block .h{font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:.5rem}
+.contact-block .row{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem 1rem}
+.addr{font-weight:500;color:var(--ink);overflow-wrap:anywhere;user-select:all}
+.copy-btn{font-family:var(--body);font-size:.8rem;letter-spacing:.02em;font-weight:500;color:var(--bg);background:var(--ink);border:0;border-radius:4px;padding:.5rem .8rem;cursor:pointer}
+.copy-btn:hover{background:var(--accent);color:#fff}
+.copy-btn.done{background:var(--accent);color:#fff}
+:root[data-theme="ocean"] .copy-btn{color:#0f2350;background:var(--accent)}
+.copy-btn.small{font-size:.72rem;padding:.25rem .55rem;vertical-align:middle;margin-left:.3rem}
+.mail-link{font-size:.85rem;color:var(--ink-3)}
+.mail-link:hover{color:var(--accent)}
+.person .mail .addr{font-weight:450;font-size:.86rem}
