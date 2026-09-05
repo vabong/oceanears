@@ -22,7 +22,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;450;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
 </head>
-<body>
+<body class="water">
 
 <canvas id="seafield"></canvas>
 
@@ -40,6 +40,15 @@
 
 <!-- ============ HERO ============ -->
 <header class="hero glass">
+  <div class="wavewrap" id="wavewrap" aria-hidden="true">
+    <svg viewBox="0 0 1200 340" preserveAspectRatio="none">
+      <path class="sng" id="w1" stroke="rgba(142,193,255,.85)" stroke-width="2"
+            style="filter:drop-shadow(0 0 8px rgba(142,193,255,.7))"/>
+      <path class="sng" id="w2" stroke="rgba(185,216,255,.5)"  stroke-width="1.4"/>
+      <path class="sng" id="w3" stroke="rgba(165,190,227,.28)" stroke-width="1"/>
+    </svg>
+  </div>
+
   <div class="caustics"></div>
 
   <div class="wrap hero-inner">
