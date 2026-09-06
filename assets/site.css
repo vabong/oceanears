@@ -316,3 +316,6 @@ body.water .wavewrap svg{width:100%;height:260px;display:block}
 body.water .sng{fill:none;stroke-linecap:round}
 body.water #w1{stroke:rgba(142,193,255,.85)}body.water #w2{stroke:rgba(185,216,255,.5)}body.water #w3{stroke:rgba(165,190,227,.28)}
 body.water .hero-inner{position:relative;z-index:1}
+.refs-block{margin:0 0 1.1rem;padding:1.2rem 1.6rem;background:var(--card);border:1px solid var(--card-edge);box-shadow:var(--card-shadow);border-radius:var(--radius)}
+.refs-block .refs{margin:0}
+sup{font-size:.7em;line-height:0;color:var(--accent)}
