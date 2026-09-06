@@ -319,3 +319,4 @@ body.water .hero-inner{position:relative;z-index:1}
 .refs-block{margin:0 0 1.1rem;padding:1.2rem 1.6rem;background:var(--card);border:1px solid var(--card-edge);box-shadow:var(--card-shadow);border-radius:var(--radius)}
 .refs-block .refs{margin:0}
 sup{font-size:.7em;line-height:0;color:var(--accent)}
+.soon-inline{font-family:var(--body);font-size:.72rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-left:.5rem;vertical-align:middle}
