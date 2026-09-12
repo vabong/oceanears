@@ -23,6 +23,14 @@
   });
   /* hide the swipe hint once a diagram has been scrolled */
   document.querySelectorAll('.infogram-wrap').forEach(function(w){w.addEventListener('scroll',function(){w.classList.add('scrolled');},{passive:true});});
+  /* contact addresses are assembled here, not written in the page source */
+  document.querySelectorAll('.addr[data-u]').forEach(function(el){
+    var a=el.getAttribute('data-u')+'\u0040'+el.getAttribute('data-d');
+    el.textContent=a;
+    var wrap=el.parentElement;
+    var btn=wrap.querySelector('.copy-btn'); if(btn){btn.setAttribute('data-copy',a);btn.hidden=false;}
+    var link=wrap.querySelector('.mail-link'); if(link){link.href='mailto:'+a+(link.getAttribute('data-subject')?'?subject='+encodeURIComponent(link.getAttribute('data-subject')):'');link.hidden=false;}
+  });
   /* copy an address to the clipboard */
   document.querySelectorAll('.copy-btn').forEach(function(btn){
     btn.addEventListener('click',function(){

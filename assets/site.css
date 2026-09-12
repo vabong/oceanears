@@ -330,3 +330,17 @@ sup{font-size:.7em;line-height:0;color:var(--accent)}
 /* opening statement on the landing page */
 .prose .statement{font-size:1.45rem;line-height:1.4;font-weight:500;letter-spacing:-.015em;color:var(--ink);margin:0 0 1.8rem;column-span:all;break-inside:avoid;max-width:34em}
 @media(max-width:760px){.prose .statement{font-size:1.2rem}}
+
+/* ---------- paragraphs justified everywhere except small screens ---------- */
+@media(min-width:761px){
+  p,.prose p,.facet p,.card p,.person p,.inst,.accordion .body p,.lede,.keyterms p,.refs li,table.plain td{text-align:justify;text-justify:inter-word;hyphens:auto;-webkit-hyphens:auto}
+  .statement,figcaption,.credit-line,.meta,.footflag,.copyright,.funding,.share .h,.pn .k,.pn .t,.contact-block .row,.mail-link,.person .mail{text-align:left}
+  .credit-line{text-align:right}
+}
+/* main introduction: wider space between the columns, no gap at the top of the first column */
+@media(min-width:1000px){
+  .block .prose{column-gap:3.6rem}
+  .prose > :first-child,.prose .statement + *{margin-top:0}
+}
+/* headings and the opening statement: never hyphenated, never justified */
+h1,h2,h3,h4,.prose p.statement,.facet h3,.card h2,.person h3,.pn .t,.map-overlay h3,.whales-block h3,.prose h3,.entry-head h1,.jhead h1,.pillar h2,.subtitle,.pillar .subtitle,.entry-head .stand{hyphens:manual;-webkit-hyphens:manual;text-align:left;overflow-wrap:normal;word-break:normal}
