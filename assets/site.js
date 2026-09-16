@@ -23,13 +23,15 @@
   });
   /* hide the swipe hint once a diagram has been scrolled */
   document.querySelectorAll('.infogram-wrap').forEach(function(w){w.addEventListener('scroll',function(){w.classList.add('scrolled');},{passive:true});});
-  /* contact addresses are assembled here, not written in the page source */
-  document.querySelectorAll('.addr[data-u]').forEach(function(el){
-    var a=el.getAttribute('data-u')+'\u0040'+el.getAttribute('data-d');
-    el.textContent=a;
-    var wrap=el.parentElement;
-    var btn=wrap.querySelector('.copy-btn'); if(btn){btn.setAttribute('data-copy',a);btn.hidden=false;}
-    var link=wrap.querySelector('.mail-link'); if(link){link.href='mailto:'+a+(link.getAttribute('data-subject')?'?subject='+encodeURIComponent(link.getAttribute('data-subject')):'');link.hidden=false;}
+  /* contact address: hidden until the Email button is clicked, never written in the page source */
+  document.querySelectorAll('.reveal-btn[data-u]').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var a=btn.getAttribute('data-u')+'\u0040'+btn.getAttribute('data-d'), wrap=btn.parentElement;
+      var addr=wrap.querySelector('.addr'); if(addr){addr.textContent=a;addr.hidden=false;}
+      var copy=wrap.querySelector('.copy-btn'); if(copy){copy.setAttribute('data-copy',a);copy.hidden=false;}
+      var link=wrap.querySelector('.mail-link'); if(link){link.href='mailto:'+a+(link.getAttribute('data-subject')?'?subject='+encodeURIComponent(link.getAttribute('data-subject')):'');link.hidden=false;}
+      btn.hidden=true;
+    });
   });
   /* copy an address to the clipboard */
   document.querySelectorAll('.copy-btn').forEach(function(btn){
@@ -41,3 +43,12 @@
     });
   });
 })();
+
+// Nav submenu: click "The Archive" to open the list of Archive pages; click elsewhere or press Escape to close.
+document.querySelectorAll('.topbar nav .menu').forEach(function(m){
+  var b=m.querySelector('.menu-btn'), s=m.querySelector('.sub');
+  function set(open){ s.hidden=!open; b.setAttribute('aria-expanded',open?'true':'false'); }
+  b.addEventListener('click',function(e){ e.stopPropagation(); set(s.hidden); });
+  document.addEventListener('click',function(e){ if(!m.contains(e.target)) set(false); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') set(false); });
+});

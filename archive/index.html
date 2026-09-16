@@ -21,7 +21,13 @@
   <a class="mark" href="../">OCEAN&nbsp;EARS</a>
   <nav>
     <a href="../team/">Research Team</a>
-    <a href="../archive/" aria-current="page">The Archive</a>
+    <div class="menu">
+      <button class="menu-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-current="page">The Archive<span class="caret" aria-hidden="true"></span></button>
+      <div class="sub" hidden>
+        <a href="../archive/" aria-current="page">The Archive</a>
+        <a href="../archive/whales/">About whales</a>
+      </div>
+    </div>
     <a href="../application/">The Application</a>
     <a href="../installations/">The Installations</a>
     <a href="../blog/">Blog</a>
@@ -41,6 +47,10 @@
       <p>The archive depends on the recordings and expertise of the whale and ocean bioacoustics communities. Contributors keep their credit, set the terms of use, and remain part of how their sound is shared.</p>
     </div>
 
+    <a class="subpage" href="whales/">
+      <span class="h">About whales</span>
+      <span class="sub">Baleen and toothed whales, sizes to scale, and the sounds, singers and purpose of each species.</span>
+    </a>
     <div class="glass extras">
     <div class="credit">
       <div class="h">With the support of</div>
@@ -56,8 +66,9 @@
     <div class="contact-block">
       <div class="h">Get in touch to participate</div>
       <div class="row">
-        <span class="addr" data-u="cobi.van-tonder" data-d="sorbonne-universite.fr">email on request</span>
-        <button class="copy-btn" type="button" hidden>Copy address</button>
+        <button class="reveal-btn" type="button" data-u="cobi.van-tonder" data-d="sorbonne-universite.fr">Email</button>
+        <span class="addr" hidden></span>
+        <button class="copy-btn" type="button" hidden>Copy</button>
         <a class="mail-link" href="#" hidden data-subject="OCEAN EARS — participate">open in your mail app</a>
       </div>
     </div>
