@@ -429,3 +429,13 @@ h1,h2,h3,h4,.prose p.statement,.facet h3,.card h2,.person h3,.pn .t,.map-overlay
   .topbar nav .menu{flex-basis:100%}
 }
 .topbar nav .sub[hidden]{display:none}
+.infogram-wrap .credits,.sounds-group .credits{margin:.6rem 0 .3rem;border-top:1px solid var(--rule);padding-top:.5rem;font-size:.68rem;color:var(--ink-3);line-height:1.45}
+.sounds-group .credits summary{cursor:pointer;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.sounds-group .credits p{margin:.5rem 0;font-size:.68rem;color:var(--ink-3);text-align:left}
+.sounds-group .credits .refs{margin:0;padding-left:1.1rem;font-size:.68rem;text-align:left}
+.sounds-group .credits .refs li{text-align:left;hyphens:manual;break-inside:avoid;margin:0 0 .15rem}
+.sounds-group .credits .refs a{color:var(--ink-3);overflow-wrap:anywhere}
+.sounds-group .credits .refs b{font-weight:500;color:var(--ink-2)}
+@media(min-width:900px){.sounds-group .credits .refs{columns:2;column-gap:2rem}}
+.sounds-group .group-h{font-family:var(--body);font-size:1.15rem;font-weight:500;letter-spacing:-.01em;margin:.2rem 0 .6rem;text-align:left;hyphens:manual}
+.sounds-group .group-h span{display:block;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-top:.25rem}
